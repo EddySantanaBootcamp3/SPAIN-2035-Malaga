@@ -1,31 +1,37 @@
-# SPAIN 2035 · ¿Podré quedarme en Málaga?
+# SPAIN 2035 | Málaga Housing & Affordability Analytics
 
-**Proyecto 7 de Regresión · Factoría F5 · Aplicación multipágina**  
-**Diseño:** Mediterráneo de Cristal  
-**Autoría:** Mohamed
+**Inteligencia de datos inmobiliarios · Machine Learning · Business Intelligence**
+
+¿Es económicamente viable vivir en Málaga con un salario de Data Analyst? Este caso de estudio combina análisis territorial, regresión predictiva y simulación financiera para explorar la evolución del alquiler y la capacidad adquisitiva.
+
+**[Explorar dashboard interactivo](https://spain-2035-malaga.streamlit.app/)** · [Notebook](SPAIN_2035_Malaga.ipynb) · [Documentación técnica](DOCUMENTACION_MULTIPAGINA.md)
 
 ![Vista del atlas de Málaga](web/SPAIN2035_vista_simulador.png)
 
-## Acceso a la entrega
+## Resultados destacados
 
-- **[Abrir la aplicación completa](https://spain-2035-malaga.streamlit.app/)**
-- [Consultar el simulador original](https://spain-2035-malaga.streamlit.app/simulador)
-- [Leer la exposición del proyecto dentro de la app](https://spain-2035-malaga.streamlit.app/proyecto)
-- **[Memoria técnica de la ampliación](DOCUMENTACION_MULTIPAGINA.md)**
-- [Notebook de análisis y modelado](SPAIN_2035_Malaga.ipynb)
+| Indicador | Resultado documentado |
+|---|---:|
+| Registros sección–año | 6.104 |
+| Secciones censales | 436 |
+| Mejor MAE retrospectivo de los cinco métodos originales | 27,12 €/mes |
+| R² del mismo modelo | 0,9375 |
 
-## Qué aporta esta versión
+Los resultados corresponden a la evaluación retrospectiva de 2023–2024; no representan una validación independiente de escenarios a 2035.
 
-El proyecto se amplía desde un atlas de alquiler a una aplicación de ocho páginas
-que conecta vivienda, perfiles salariales, presupuesto, compra, economía,
-bienestar y evaluación de modelos. El objetivo es estudiar la asequibilidad de
-vivir en Málaga y explicar cómo se pasa de los datos a una herramienta interactiva.
+## Competencias demostradas
+
+Python · pandas · NumPy · scikit-learn · Streamlit · Plotly · Leaflet · análisis exploratorio · integración de fuentes públicas · visualización geoespacial · regresión · validación temporal · Git/GitHub.
+
+## Solución y funcionalidades
+
+La aplicación integra ocho vistas de vivienda, salarios, presupuesto, compra, economía, bienestar y evaluación predictiva. Transforma datos públicos en indicadores y escenarios interactivos para apoyar decisiones de residencia y planificación financiera.
 
 El código y la exposición distinguen datos observados, estimaciones del modelo y
 escenarios hasta 2035. No se interpreta un escenario de diez años como una
 predicción validada a ese horizonte.
 
-| Página | Trabajo que permite examinar |
+| Página | Funcionalidad |
 |---|---|
 | Dashboard | Indicadores, serie municipal y margen mensual por perfil salarial. |
 | Simulador original | Atlas conservado con mapa, código postal, año y consultas de alquiler. |
@@ -36,20 +42,7 @@ predicción validada a ese horizonte.
 | Modelo y evaluación | Comparación de métodos, MAE, RMSE, R², residuos y brechas de rendimiento. |
 | El proyecto · Exposición | Pregunta, autoría, organización, fuentes y proceso completo hasta la app. |
 
-## Recorrido recomendado para la evaluación
-
-1. Consultar el **notebook** para examinar el EDA y el razonamiento analítico.
-2. Abrir **Modelo y evaluación** para revisar los errores y las limitaciones.
-3. Explorar **Presupuesto**, **Compra** y **Economía y bienestar** para comprobar
-   cómo se conectan los datos y los supuestos con preguntas de uso.
-4. Leer **El proyecto · Exposición** y la [memoria técnica](DOCUMENTACION_MULTIPAGINA.md)
-   para entender las decisiones y la arquitectura del trabajo.
-
-La profundidad del proyecto se documenta mediante cálculos reproducibles,
-comparaciones y decisiones justificadas; el número de páginas no sustituye la
-evaluación del modelo ni acredita por sí solo una rúbrica académica.
-
-## Datos y modelo principal
+## Datos, metodología y resultados
 
 - Panel de **6.104 registros sección–año**, **436 secciones** y **5.182 medianas
   publicadas**; se documentan **922 ausencias de mediana**.
@@ -74,7 +67,7 @@ La ampliación hace visible esa comparación y mantiene el ensemble del atlas.
 Estos resultados proceden de los datos y versiones probados al preparar la
 ampliación; la página de evaluación los recalcula al ejecutarse.
 
-## Ejecución en VS Code
+## Reproducción local
 
 Desde la carpeta del repositorio, con Python 3.11 o posterior:
 
@@ -87,7 +80,7 @@ Abrir la dirección local indicada por Streamlit. El callejero del simulador usa
 teselas de OpenStreetMap y requiere Internet. Las bases de datos se distribuyen
 en `datos/Atlas_Malaga_datos.zip`, que debe mantenerse comprimido.
 
-## Archivos principales y conservación del trabajo
+## Arquitectura del repositorio
 
 | Archivo | Función |
 |---|---|
@@ -149,3 +142,12 @@ enlaces de procedencia y descargas. Renta INE, indicadores SIMA y paro se conser
 como contexto y no se atribuyen como entradas del modelo de alquiler.
 
 **La memoria técnica amplía estas decisiones:** [DOCUMENTACION_MULTIPAGINA.md](DOCUMENTACION_MULTIPAGINA.md).
+
+
+## Contexto y autoría
+
+Proyecto de portafolio desarrollado por Eddy Santana Batista, iniciado durante la formación de Data Analyst en Factoría F5. La documentación histórica se conserva como trazabilidad del desarrollo.
+
+## English summary
+
+An interactive housing affordability analytics case study for Málaga, Spain. The application combines public housing data, geospatial analysis, regression models and financial scenarios. Historical model performance is reported separately from long-term assumptions. The repository includes reproducible validation code and a Streamlit dashboard.
