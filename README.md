@@ -1,29 +1,52 @@
-# SPAIN 2035 · ¿Podré quedarme en Málaga?
+![SPAIN 2035](assets/portfolio-banner.svg)
 
-**Proyecto 7 de Regresión · Factoría F5 · Aplicación multipágina**  
-**Diseño:** Mediterráneo de Cristal  
-**Autoría:** Mohamed
+# SPAIN 2035 | Málaga Housing & Affordability Analytics
 
-## Acceso a la entrega
+**Inteligencia de datos inmobiliarios · Machine Learning · Business Intelligence**
 
-- **[Abrir la aplicación completa](https://spain-2035-malaga.streamlit.app/)**
-- [Consultar el simulador original](https://spain-2035-malaga.streamlit.app/simulador)
-- [Leer la exposición del proyecto dentro de la app](https://spain-2035-malaga.streamlit.app/proyecto)
-- **[Memoria técnica de la ampliación](DOCUMENTACION_MULTIPAGINA.md)**
-- [Notebook de análisis y modelado](SPAIN_2035_Malaga.ipynb)
+¿Es económicamente viable vivir en Málaga con un salario de Data Analyst? Este caso de estudio combina análisis territorial, regresión predictiva y simulación financiera para explorar la evolución del alquiler y la capacidad adquisitiva.
 
-## Qué aporta esta versión
+**[Explorar dashboard interactivo](https://spain-2035-malaga.streamlit.app/)** · [Notebook](SPAIN_2035_Malaga.ipynb) · [Documentación técnica](DOCUMENTACION_MULTIPAGINA.md)
 
-El proyecto se amplía desde un atlas de alquiler a una aplicación de ocho páginas
-que conecta vivienda, perfiles salariales, presupuesto, compra, economía,
-bienestar y evaluación de modelos. El objetivo es estudiar la asequibilidad de
-vivir en Málaga y explicar cómo se pasa de los datos a una herramienta interactiva.
+![Vista del atlas de Málaga](web/SPAIN2035_vista_simulador.png)
+
+## Resultados destacados
+
+| Indicador | Resultado documentado |
+|---|---:|
+| Registros sección–año | 6.104 |
+| Secciones censales | 436 |
+| Mejor MAE retrospectivo de los cinco métodos originales | 27,12 €/mes |
+| R² del mismo modelo | 0,9375 |
+
+Los resultados corresponden a la evaluación retrospectiva de 2023–2024; no representan una validación independiente de escenarios a 2035.
+
+## Resultados reproducidos · 24/11/2026
+
+[GitHub Actions: ejecución correcta y artefacto de métricas](https://github.com/EddySantanaBootcamp3/SPAIN-2035-Malaga/actions/runs/45363015965). Entrenamiento: 3.549 filas; evaluación retrospectiva 2023–2024: 786 filas.
+
+| Modelo | MAE train | MAE retrospectivo | R² retrospectivo | Brecha MAE |
+|---|---:|---:|---:|---:|
+| Persistencia | 28,50 | 47,67 | 0,8601 | 67,25 % |
+| Lineal completa | 22,98 | 27,12 | 0,9375 | 18,02 % |
+| Ridge 10 | 22,97 | 27,28 | 0,9368 | 18,76 % |
+| Gradient Boosting | 21,37 | 30,52 | 0,9244 | 42,78 % |
+
+La brecha de R² de la lineal completa es 0,30 puntos porcentuales; la brecha relativa de MAE es 18,02 %. No se alcanza el objetivo de 5 % en MAE. Ridge 10 gana entre candidatos lineales por CV ponderada (29,09 €/mes), pero no mejora la lineal completa en la evaluación retrospectiva. No comparar directamente ese ranking con el MAE CV no ponderado del ensemble. Se mantiene el modelo del simulador para no alterar su comportamiento; cualquier sustitución requiere validación prospectiva y pruebas del dashboard.
+
+## Competencias demostradas
+
+Python · pandas · NumPy · scikit-learn · Streamlit · Plotly · Leaflet · análisis exploratorio · integración de fuentes públicas · visualización geoespacial · regresión · validación temporal · Git/GitHub.
+
+## Solución y funcionalidades
+
+La aplicación integra ocho vistas de vivienda, salarios, presupuesto, compra, economía, bienestar y evaluación predictiva. Transforma datos públicos en indicadores y escenarios interactivos para apoyar decisiones de residencia y planificación financiera.
 
 El código y la exposición distinguen datos observados, estimaciones del modelo y
 escenarios hasta 2035. No se interpreta un escenario de diez años como una
 predicción validada a ese horizonte.
 
-| Página | Trabajo que permite examinar |
+| Página | Funcionalidad |
 |---|---|
 | Dashboard | Indicadores, serie municipal y margen mensual por perfil salarial. |
 | Simulador original | Atlas conservado con mapa, código postal, año y consultas de alquiler. |
@@ -34,20 +57,7 @@ predicción validada a ese horizonte.
 | Modelo y evaluación | Comparación de métodos, MAE, RMSE, R², residuos y brechas de rendimiento. |
 | El proyecto · Exposición | Pregunta, autoría, organización, fuentes y proceso completo hasta la app. |
 
-## Recorrido recomendado para la evaluación
-
-1. Consultar el **notebook** para examinar el EDA y el razonamiento analítico.
-2. Abrir **Modelo y evaluación** para revisar los errores y las limitaciones.
-3. Explorar **Presupuesto**, **Compra** y **Economía y bienestar** para comprobar
-   cómo se conectan los datos y los supuestos con preguntas de uso.
-4. Leer **El proyecto · Exposición** y la [memoria técnica](DOCUMENTACION_MULTIPAGINA.md)
-   para entender las decisiones y la arquitectura del trabajo.
-
-La profundidad del proyecto se documenta mediante cálculos reproducibles,
-comparaciones y decisiones justificadas; el número de páginas no sustituye la
-evaluación del modelo ni acredita por sí solo una rúbrica académica.
-
-## Datos y modelo principal
+## Datos, metodología y resultados
 
 - Panel de **6.104 registros sección–año**, **436 secciones** y **5.182 medianas
   publicadas**; se documentan **922 ausencias de mediana**.
@@ -72,7 +82,7 @@ La ampliación hace visible esa comparación y mantiene el ensemble del atlas.
 Estos resultados proceden de los datos y versiones probados al preparar la
 ampliación; la página de evaluación los recalcula al ejecutarse.
 
-## Ejecución en VS Code
+## Reproducción local
 
 Desde la carpeta del repositorio, con Python 3.11 o posterior:
 
@@ -85,7 +95,7 @@ Abrir la dirección local indicada por Streamlit. El callejero del simulador usa
 teselas de OpenStreetMap y requiere Internet. Las bases de datos se distribuyen
 en `datos/Atlas_Malaga_datos.zip`, que debe mantenerse comprimido.
 
-## Archivos principales y conservación del trabajo
+## Arquitectura del repositorio
 
 | Archivo | Función |
 |---|---|
@@ -93,16 +103,30 @@ en `datos/Atlas_Malaga_datos.zip`, que debe mantenerse comprimido.
 | `analisis.py` | Datos, validación temporal, modelos y cálculos de escenarios. |
 | `vistas.py` | Interfaz, gráficas, explicaciones e inventario de fuentes. |
 | `simulador_original.py` | Implementación del atlas reutilizada por la multipágina. |
-| `app_streamlit_antes_multipagina.py` | Copia del archivo de entrada local anterior a la integración. |
 | `autor.json` | Datos editables de autoría y organización. |
 | `datos/Atlas_Malaga_datos.zip` | Bases originales y documentación de procedencia. |
 | `recursos/panorama.jpg` | Recurso visual de Málaga. |
 | `SPAIN_2035_Malaga.ipynb` | Análisis exploratorio, experimentos y conclusiones. |
 | `requirements.txt` | Dependencias de ejecución y análisis. |
 
-El notebook y los archivos previos no se eliminaron al integrar la ampliación.
-Además de la copia del simulador, se creó un respaldo completo fuera del
-repositorio antes de incorporar los cambios.
+El notebook y el simulador original se conservan. La copia idéntica `app_streamlit_antes_multipagina.py` permanece recuperable en el historial Git. El ZIP de la raíz se conserva por compatibilidad con la aplicación HTTP anterior y su prueba de seguimiento.
+
+## Auditoría técnica y reproducibilidad
+
+- [Plan de validación y mantenimiento](AUDITORIA_TECNICA.md)
+- Aplicación principal: `app_streamlit.py`. La aplicación HTTP anterior (`app_malaga.py`) se conserva como alternativa histórica.
+- Las métricas de la auditoría han sido reproducidas por GitHub Actions; el periodo retrospectivo no constituye una evaluación independiente nueva.
+
+### Validación reproducible del modelo
+
+Ejecutar desde la raíz:
+
+```bash
+python -m unittest discover -s tests -v
+python validar_modelo.py
+```
+
+El informe JSON compara persistencia, tres regresiones lineales, cuatro Ridge y Gradient Boosting, con MAE, RMSE, R² y brechas de generalización. La selección lineal/Ridge utiliza únicamente cortes 2018–2022. El MAE de CV de Gradient Boosting usa una agregación distinta y se presenta por separado. Los resultados 2023–2024 son retrospectivos, no un test independiente nuevo. La integración continua ejecuta las pruebas y publica el informe como artefacto de GitHub Actions.
 
 ## Límites que deben tenerse presentes
 
@@ -133,3 +157,12 @@ enlaces de procedencia y descargas. Renta INE, indicadores SIMA y paro se conser
 como contexto y no se atribuyen como entradas del modelo de alquiler.
 
 **La memoria técnica amplía estas decisiones:** [DOCUMENTACION_MULTIPAGINA.md](DOCUMENTACION_MULTIPAGINA.md).
+
+
+## Contexto y autoría
+
+Proyecto de portafolio desarrollado por Eddy Santana Batista, iniciado durante la formación de Data Analyst en Factoría F5. La documentación histórica se conserva como trazabilidad del desarrollo.
+
+## English summary
+
+An interactive housing affordability analytics case study for Málaga, Spain. The application combines public housing data, geospatial analysis, regression models and financial scenarios. Historical model performance is reported separately from long-term assumptions. The repository includes reproducible validation code and a Streamlit dashboard.
