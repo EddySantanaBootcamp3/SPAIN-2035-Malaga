@@ -93,16 +93,19 @@ en `datos/Atlas_Malaga_datos.zip`, que debe mantenerse comprimido.
 | `analisis.py` | Datos, validación temporal, modelos y cálculos de escenarios. |
 | `vistas.py` | Interfaz, gráficas, explicaciones e inventario de fuentes. |
 | `simulador_original.py` | Implementación del atlas reutilizada por la multipágina. |
-| `app_streamlit_antes_multipagina.py` | Copia del archivo de entrada local anterior a la integración. |
 | `autor.json` | Datos editables de autoría y organización. |
 | `datos/Atlas_Malaga_datos.zip` | Bases originales y documentación de procedencia. |
 | `recursos/panorama.jpg` | Recurso visual de Málaga. |
 | `SPAIN_2035_Malaga.ipynb` | Análisis exploratorio, experimentos y conclusiones. |
 | `requirements.txt` | Dependencias de ejecución y análisis. |
 
-El notebook y los archivos previos no se eliminaron al integrar la ampliación.
-Además de la copia del simulador, se creó un respaldo completo fuera del
-repositorio antes de incorporar los cambios.
+El notebook y el simulador original se conservan. La copia idéntica `app_streamlit_antes_multipagina.py` permanece recuperable en el historial Git. El ZIP de la raíz se conserva por compatibilidad con la aplicación HTTP anterior y su prueba de seguimiento.
+
+## Auditoría técnica y reproducibilidad
+
+- [Plan de validación y mantenimiento](AUDITORIA_TECNICA.md)
+- Aplicación principal: `app_streamlit.py`. La aplicación HTTP anterior (`app_malaga.py`) se conserva como alternativa histórica.
+- Las métricas publicadas son resultados históricos documentados, no una nueva ejecución independiente de esta revisión.
 
 ## Límites que deben tenerse presentes
 
