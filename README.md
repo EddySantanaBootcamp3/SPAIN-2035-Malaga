@@ -4,6 +4,8 @@
 **Diseño:** Mediterráneo de Cristal  
 **Autoría:** Mohamed
 
+![Vista del atlas de Málaga](web/SPAIN2035_vista_simulador.png)
+
 ## Acceso a la entrega
 
 - **[Abrir la aplicación completa](https://spain-2035-malaga.streamlit.app/)**
@@ -106,6 +108,17 @@ El notebook y el simulador original se conservan. La copia idéntica `app_stream
 - [Plan de validación y mantenimiento](AUDITORIA_TECNICA.md)
 - Aplicación principal: `app_streamlit.py`. La aplicación HTTP anterior (`app_malaga.py`) se conserva como alternativa histórica.
 - Las métricas publicadas son resultados históricos documentados, no una nueva ejecución independiente de esta revisión.
+
+### Validación reproducible del modelo
+
+Ejecutar desde la raíz:
+
+```bash
+python -m unittest discover -s tests -v
+python validar_modelo.py
+```
+
+El informe JSON compara persistencia, tres regresiones lineales, cuatro Ridge y Gradient Boosting, con MAE, RMSE, R² y brechas de generalización. La selección lineal/Ridge utiliza únicamente cortes 2018–2022. El MAE de CV de Gradient Boosting usa una agregación distinta y se presenta por separado. Los resultados 2023–2024 son retrospectivos, no un test independiente nuevo. La integración continua ejecuta las pruebas y publica el informe como artefacto de GitHub Actions.
 
 ## Límites que deben tenerse presentes
 
