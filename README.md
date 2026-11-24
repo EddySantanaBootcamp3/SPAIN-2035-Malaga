@@ -1,3 +1,5 @@
+![SPAIN 2035](assets/portfolio-banner.svg)
+
 # SPAIN 2035 | Málaga Housing & Affordability Analytics
 
 **Inteligencia de datos inmobiliarios · Machine Learning · Business Intelligence**
@@ -18,6 +20,19 @@
 | R² del mismo modelo | 0,9375 |
 
 Los resultados corresponden a la evaluación retrospectiva de 2023–2024; no representan una validación independiente de escenarios a 2035.
+
+## Resultados reproducidos · 24/11/2026
+
+[GitHub Actions: ejecución correcta y artefacto de métricas](https://github.com/EddySantanaBootcamp3/SPAIN-2035-Malaga/actions/runs/45363015965). Entrenamiento: 3.549 filas; evaluación retrospectiva 2023–2024: 786 filas.
+
+| Modelo | MAE train | MAE retrospectivo | R² retrospectivo | Brecha MAE |
+|---|---:|---:|---:|---:|
+| Persistencia | 28,50 | 47,67 | 0,8601 | 67,25 % |
+| Lineal completa | 22,98 | 27,12 | 0,9375 | 18,02 % |
+| Ridge 10 | 22,97 | 27,28 | 0,9368 | 18,76 % |
+| Gradient Boosting | 21,37 | 30,52 | 0,9244 | 42,78 % |
+
+La brecha de R² de la lineal completa es 0,30 puntos porcentuales; la brecha relativa de MAE es 18,02 %. No se alcanza el objetivo de 5 % en MAE. Ridge 10 gana entre candidatos lineales por CV ponderada (29,09 €/mes), pero no mejora la lineal completa en la evaluación retrospectiva. No comparar directamente ese ranking con el MAE CV no ponderado del ensemble. Se mantiene el modelo del simulador para no alterar su comportamiento; cualquier sustitución requiere validación prospectiva y pruebas del dashboard.
 
 ## Competencias demostradas
 
@@ -100,7 +115,7 @@ El notebook y el simulador original se conservan. La copia idéntica `app_stream
 
 - [Plan de validación y mantenimiento](AUDITORIA_TECNICA.md)
 - Aplicación principal: `app_streamlit.py`. La aplicación HTTP anterior (`app_malaga.py`) se conserva como alternativa histórica.
-- Las métricas publicadas son resultados históricos documentados, no una nueva ejecución independiente de esta revisión.
+- Las métricas de la auditoría han sido reproducidas por GitHub Actions; el periodo retrospectivo no constituye una evaluación independiente nueva.
 
 ### Validación reproducible del modelo
 
