@@ -5,7 +5,7 @@
 - La versión multipágina tiene ocho vistas y compara cinco métodos de regresión.
 - La regresión lineal con tendencias local y municipal presenta el menor MAE retrospectivo documentado (27,12 €/mes frente a 30,52 del Gradient Boosting). No equivale a una selección independiente para producción.
 - El periodo 2023–2024 ya fue inspeccionado durante el desarrollo. La generalización debe comprobarse con observaciones posteriores no utilizadas en selección ni ajuste.
-- Hay dos ZIP idénticos. Se conservan ambos provisionalmente porque el servidor HTTP anterior y su prueba necesitan el ZIP de la raíz, mientras que la multipágina lee el de datos/.
+- Se propone consolidar los ZIP idénticos en `datos/Atlas_Malaga_datos.zip` y comprobar el servidor HTTP y el modelo antes de integrar.
 - Se elimina únicamente la copia idéntica del simulador que no utilizan los módulos principales; sigue accesible en Git.
 
 ## Protocolo de validación pendiente

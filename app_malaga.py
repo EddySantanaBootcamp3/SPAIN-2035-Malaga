@@ -1,4 +1,4 @@
-"""SPAIN 2035. Ejecutar con Python junto a Atlas_Malaga_datos.zip."""
+"""SPAIN 2035. Ejecutar con Python y datos/Atlas_Malaga_datos.zip."""
 import json
 import webbrowser
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -31,7 +31,7 @@ def crear_servidor(tabla, mae, ruta_db):
     catalogo = {int(a): list(grupo.index.get_level_values("zona")) for a, grupo in tabla.groupby(level="anio")}
 
     # Las proyecciones usan la mediana publicada de 2024 incluso donde falte historial para Gradient Boosting.
-    with ZipFile(WEB.parent / "Atlas_Malaga_datos.zip") as atlas:
+    with ZipFile(WEB.parent / "datos" / "Atlas_Malaga_datos.zip") as atlas:
         secciones = atlas.read("Datos_Malaga/mapa_secciones_malaga_2021.geojson")
         with atlas.open("Datos_Malaga/alquiler_seccion_malaga.csv") as f:
             panel = pd.read_csv(f, dtype={"zona": str})
@@ -113,12 +113,12 @@ def crear_servidor(tabla, mae, ruta_db):
 
 
 if __name__ == "__main__":
-    archivo = Path(__file__).resolve().with_name("Atlas_Malaga_datos.zip")
+    archivo = Path(__file__).resolve().parent / "datos" / "Atlas_Malaga_datos.zip"
     if not archivo.is_file():
-        raise SystemExit("Coloca Atlas_Malaga_datos.zip en la misma carpeta que app_malaga.py.")
+        raise SystemExit("Falta datos/Atlas_Malaga_datos.zip.")
     # Al iniciar se entrena una vez. Cada consulta recupera el resultado correspondiente a su sección y año.
     tabla, ajuste, metricas = entrenar(archivo)
-    with crear_servidor(tabla, metricas.loc["Validación","MAE"], archivo.with_name("observaciones.sqlite3")) as servidor:
+    with crear_servidor(tabla, metricas.loc["Validación","MAE"], WEB.parent / "observaciones.sqlite3") as servidor:
         url = f"http://127.0.0.1:{servidor.server_port}"
         print(f"Abre {url} en tu navegador. Para cerrar, pulsa Ctrl+C en la terminal.", flush=True)
         webbrowser.open(url)
