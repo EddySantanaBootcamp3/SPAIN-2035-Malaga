@@ -25,7 +25,7 @@ from pathlib import Path
 
 
 RAIZ = Path.cwd()
-NECESARIOS = ("app_malaga.py", "modelo.py", "Atlas_Malaga_datos.zip")
+NECESARIOS = ("app_malaga.py", "modelo.py", "datos/Atlas_Malaga_datos.zip")
 
 
 def consultar(url: str, *, datos: dict | None = None):
@@ -53,7 +53,9 @@ def ejecutar_prueba():
     with tempfile.TemporaryDirectory(prefix="spain2035_prueba_") as carpeta:
         temporal = Path(carpeta)
         for nombre in NECESARIOS:
-            shutil.copy2(RAIZ / nombre, temporal / nombre)
+            destino = temporal / nombre
+            destino.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(RAIZ / nombre, destino)
         shutil.copytree(RAIZ / "web", temporal / "web")
 
         # 3. Lanzamos la aplicación copiada en un proceso independiente.

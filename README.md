@@ -109,7 +109,7 @@ en `datos/Atlas_Malaga_datos.zip`, que debe mantenerse comprimido.
 | `SPAIN_2035_Malaga.ipynb` | Análisis exploratorio, experimentos y conclusiones. |
 | `requirements.txt` | Dependencias de ejecución y análisis. |
 
-El notebook y el simulador original se conservan. La copia idéntica `app_streamlit_antes_multipagina.py` permanece recuperable en el historial Git. El ZIP de la raíz se conserva por compatibilidad con la aplicación HTTP anterior y su prueba de seguimiento.
+El notebook y el simulador original se conservan. La copia idéntica `app_streamlit_antes_multipagina.py` permanece recuperable en el historial Git. La única copia del ZIP reside en `datos/Atlas_Malaga_datos.zip`; el servidor HTTP, su prueba y el notebook utilizan esa ruta.
 
 ## Auditoría técnica y reproducibilidad
 
